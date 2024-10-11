@@ -1,2 +1,0 @@
-nohup ./oula-pool-prover --pool wss://aleo.oula.network:6666 --account caotanzhong --worker-name u-81 &> oula.log &
-tail -f oula.log
