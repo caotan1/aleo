@@ -1,0 +1,47 @@
+# miner名称，不填使用电脑名
+# miner name, use the computer name without filling in
+minerName:
+# 在 https://www.hpool.in/center/configuration 找ApiKey
+# Find ApiKey at https://www.hpool.in/center/configuration
+apiKey: aleo0000-12cd-eecf-feb4-810447c504db
+# 日志配置
+# Log configuration
+log:
+  level: info
+  file: miner.log
+# x-proxy配置
+# x-proxy configuration
+server:
+  # 一个局域网内，代理只需要开一台就可以了，如代理所在的机器Ip是192.168.1.88，端口9190
+  # 下面配置改为
+  # xproxy: "http://192.168.1.88:9190"
+  # In a local area network, only one proxy is required. For example, the IP of the machine where the proxy is located is 192.168.1.88 and the port is 9190
+  # The following configuration is changed to
+  # xproxy: "http://192.168.1.88:9190"
+  xproxy: ""
+# socket 或者是http代理配置
+# socket5 or http proxy
+proxy:
+    # E.g http://127.0.0.1:8888 socket5://127.0.0.1:8888
+    url: ""
+    username: ""
+    password: ""
+
+# 参数配置
+# Parameter configuration
+extraParams:
+    # 任务线程数
+    # threads
+    taskThreads: 0
+
+    # CPU绑定间隔
+    # CPU binding step
+    cpuAffinityStep: 0
+
+    # cpu开始绑定编号
+    # cpu start binding number
+    cpuAffinityStart: -1
+
+    # 并发数
+    instance: 0
+

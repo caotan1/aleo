@@ -1,0 +1,1 @@
+nohup ./oula-pool-prover --pool wss://aleo.oula.network:6666 --account caotan4070s --worker-name u-155 >> oula.log 2>&1 &

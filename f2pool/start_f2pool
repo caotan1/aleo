@@ -1,0 +1,1 @@
+nohup ./aleominer -u stratum+tcp://aleo-asia.f2pool.com:4400 -d 0,1,2,3,4,5 -w caotan.u-103 >> f2pool.log 2>&1 &
