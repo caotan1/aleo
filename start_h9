@@ -1,0 +1,1 @@
+nohup ./h9-miner-aleo-cuda  &> h9-aleo.log &
