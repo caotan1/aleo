@@ -1,0 +1,16 @@
+#!/bin/bash
+
+while true
+do
+    # 检查 zk_work_aleo 进程是否在运行
+    if ! pgrep -f "zk_work_aleo" > /dev/null; then
+        # 若未运行，执行 run_prover.sh 脚本
+        echo "$(date): zk_work_aleo程序未运行 启动中..."
+        ./watch_aleo
+    else
+        echo "$(date): zk_work_aleo 正在运行中."
+    fi
+
+    # 等待60秒后再次检查
+    sleep 60
+done
