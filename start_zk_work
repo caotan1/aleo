@@ -1,1 +1,0 @@
-nohup ./zk_work_aleo --address aleo12r69w7qat0e6n7kqg7jt9e6zlsaywczhdjn6u3zfegejg0hzv5ys2mdhyu  --pool aleo.hk.zk.work:10003 --custom_name ct-105 &> zk_work.log &
