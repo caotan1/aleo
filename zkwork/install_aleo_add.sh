@@ -239,10 +239,11 @@ fi
 
 
 #关闭原有进程
+sudo systemctl stop zk_work_aleo
 sudo pkill -9 zk_work_aleo
 sudo systemctl daemon-reload
 sudo systemctl enable aleo.service
-sudo systemctl restart aleo.service   
+sudo systemctl start aleo.service   
 sleep 5
 
 # 确保日志文件由当前用户创建，并设置权限为当前用户的读写权限
