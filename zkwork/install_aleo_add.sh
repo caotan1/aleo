@@ -149,6 +149,16 @@ done' > $TARGET_DIR/$WATCH_FILE
 
 chmod +x $TARGET_DIR/$WATCH_FILE
 
+TEMPLATE_FILE="$TARGET_DIR/$WATCH_FILE"
+# 读取模板文件内容
+TEMPLATE_CONTENT=$(<"$TEMPLATE_FILE")
+
+# 替换模板中的 CPU_NUM 变量
+MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/WHO/$WHO/g")
+
+# 创建新的脚本文件并写入修改后的内容
+echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$WATCH_FILE
+
 # 检查脚本文件是否创建成功
 if [ -f "$TARGET_DIR/$WATCH_FILE" ]; then
     echo "Script file $WATCH_FILE created successfully."
