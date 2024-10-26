@@ -171,7 +171,6 @@ MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/WHO/$WHO/g")
 # 创建新的脚本文件并写入修改后的内容
 echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$SERVICE_FILE
 
-sudo mv $TARGET_DIR/$SERVICE_FILE /etc/systemd/system/
 
 # 检查脚本文件是否创建成功
 if [ -f "$TARGET_DIR/$SERVICE_FILE" ]; then
@@ -180,6 +179,7 @@ else
     echo "Failed to create script file $SERVICE_FILE."
     exit 1
 fi
+sudo mv $TARGET_DIR/$SERVICE_FILE /etc/systemd/system/
 
 #取消开机启动
 touch $TARGET_DIR/disable_aleo
