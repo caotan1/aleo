@@ -1,8 +1,8 @@
 安装脚本：
-<br>curl -SL -o install_aleo.sh https://github.com/caotan1/aleo/raw/main/install_ore.sh && chmod +x install_aleo.sh && ./install_aleo.sh
-<br>curl -SL -o install_aleo.sh https://github.com/caotan1/aleo/raw/main/install_ore.sh && chmod +x install_aleo.sh && ./install_aleo_add.sh
-<br>curl -SL -o install_aleo.sh https://ghproxy.net/https://github.com/caotan1/aleo/raw/main/install_aleo.sh && chmod +x install_aleo.sh && ./install_aleo.sh.
-<br>curl -SL -o install_aleo.sh https://ghproxy.net/https://github.com/caotan1/aleo/raw/main/install_aleo.sh && chmod +x install_aleo.sh && ./install_aleo_add.sh
+<br>curl -SL -o install_aleo.sh https://github.com/caotan1/aleo/raw/main/zk_work/install_ore.sh && chmod +x install_aleo.sh && ./install_aleo.sh
+<br>curl -SL -o install_aleo.sh https://github.com/caotan1/aleo/raw/main/zk_work/install_ore.sh && chmod +x install_aleo.sh && ./install_aleo_add.sh
+<br>curl -SL -o install_aleo.sh https://ghproxy.net/https://github.com/caotan1/aleo/raw/main/zk_work/install_aleo.sh && chmod +x install_aleo.sh && ./install_aleo.sh
+<br>curl -SL -o install_aleo.sh https://ghproxy.net/https://github.com/caotan1/aleo/raw/main/zk_work/install_aleo.sh && chmod +x install_aleo.sh && ./install_aleo_add.sh
 <br>说明：
 <br>安装脚本：install_aleo.sh默认公钥，install_aleo_add.sh手动输入公钥
 <br>关闭开机自动运行服务脚本：disable_aleo
