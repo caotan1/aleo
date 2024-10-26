@@ -135,6 +135,16 @@ done' > $TARGET_DIR/$WATCH_FILE
 
 chmod +x $TARGET_DIR/$WATCH_FILE
 
+TEMPLATE_FILE="$TARGET_DIR/$WATCH_FILE"
+# 读取模板文件内容
+TEMPLATE_CONTENT=$(<"$TEMPLATE_FILE")
+
+# 替换模板中的 CPU_NUM 变量
+MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/WHO/$WHO/g")
+
+# 创建新的脚本文件并写入修改后的内容
+echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$WATCH_FILE
+
 # 检查脚本文件是否创建成功
 if [ -f "$TARGET_DIR/$WATCH_FILE" ]; then
     echo "Script file $WATCH_FILE created successfully."
@@ -172,6 +182,7 @@ MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/WHO/$WHO/g")
 echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$SERVICE_FILE
 
 
+
 # 检查脚本文件是否创建成功
 if [ -f "$TARGET_DIR/$SERVICE_FILE" ]; then
     echo "Script file $SERVICE_FILE created successfully."
@@ -179,6 +190,7 @@ else
     echo "Failed to create script file $SERVICE_FILE."
     exit 1
 fi
+
 sudo mv $TARGET_DIR/$SERVICE_FILE /etc/systemd/system/
 
 #取消开机启动
@@ -215,10 +227,11 @@ fi
 
 
 #关闭原有进程
+sudo systemctl stop zk_work_aleo
 sudo pkill -9 zk_work_aleo
 sudo systemctl daemon-reload
 sudo systemctl enable aleo.service
-sudo systemctl restart aleo.service   
+sudo systemctl start aleo.service   
 sleep 5
 
 # 确保日志文件由当前用户创建，并设置权限为当前用户的读写权限
