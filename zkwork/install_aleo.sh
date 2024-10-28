@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # 定义你的输入参数
-URL="https://ghproxy.net/https://github.com/6block/zkwork_aleo_gpu_worker/releases/download/v0.2.3/aleo_prover-v0.2.3_full.tar.gz"
+URL="https://ghproxy.net/https://github.com/6block/zkwork_aleo_gpu_worker/releases/download/cuda-v0.2.4/aleo_prover-v0.2.4_cuda_full.tar.gz"
 WHO=$(whoami)
 TARGET_DIR="/home/$WHO/zk_work"
-LOCAL_ARCHIVE="aleo_prover-v0.2.3_full.tar.gz"
+LOCAL_ARCHIVE="aleo_prover-v0.2.4_cuda_full.tar.gz
+"
 REQUIRED_TOOLS=("curl" "wget")
 TEMP_DIR=$(mktemp -d)
 START_FILE="start_zk_work"
@@ -90,7 +91,7 @@ mv $TARGET_DIR/aleo_prover $TARGET_DIR/zk_work_aleo
 touch $TARGET_DIR/$START_FILE
 # 提示用户输入 custom_name
 read -p "Enter custom_name : " CUSTOM_NAME
-echo 'nohup ./zk_work_aleo --pool aleo.hk.zk.work:10003 --address aleo12r69w7qat0e6n7kqg7jt9e6zlsaywczhdjn6u3zfegejg0hzv5ys2mdhyu --custom_name CUSTOM_NAME >> zk_work.log 2>&1 &' > $TARGET_DIR/$START_FILE 
+echo 'nohup ./zk_work_aleo --pool aleo.asia1.zk.work:10003 --pool aleo.hk.zk.work:10003 --pool aleo.jp.zk.work:10003 --address aleo12r69w7qat0e6n7kqg7jt9e6zlsaywczhdjn6u3zfegejg0hzv5ys2mdhyu --custom_name CUSTOM_NAME >> zk_work.log 2>&1 &' > $TARGET_DIR/$START_FILE 
 
 
 TEMPLATE_FILE="$TARGET_DIR/$START_FILE"
