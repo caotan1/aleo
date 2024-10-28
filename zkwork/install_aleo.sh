@@ -4,8 +4,7 @@
 URL="https://ghproxy.net/https://github.com/6block/zkwork_aleo_gpu_worker/releases/download/cuda-v0.2.4/aleo_prover-v0.2.4_cuda_full.tar.gz"
 WHO=$(whoami)
 TARGET_DIR="/home/$WHO/zk_work"
-LOCAL_ARCHIVE="aleo_prover-v0.2.4_cuda_full.tar.gz
-"
+LOCAL_ARCHIVE="aleo_prover-v0.2.4_cuda_full.tar.gz"
 REQUIRED_TOOLS=("curl" "wget")
 TEMP_DIR=$(mktemp -d)
 START_FILE="start_zk_work"
@@ -156,7 +155,6 @@ fi
 
 #创建aleo.service文件
 touch $TARGET_DIR/$SERVICE_FILE
-
 echo '[Unit]  
 Description=Monitor and Restart aleo if not running  
   
@@ -176,13 +174,11 @@ TEMPLATE_FILE="$TARGET_DIR/$SERVICE_FILE"
 # 读取模板文件内容
 TEMPLATE_CONTENT=$(<"$TEMPLATE_FILE")
 
-# 替换模板中的 CPU_NUM 变量
+# 替换模板中的 WHO 变量
 MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/WHO/$WHO/g")
 
 # 创建新的脚本文件并写入修改后的内容
 echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$SERVICE_FILE
-
-
 
 # 检查脚本文件是否创建成功
 if [ -f "$TARGET_DIR/$SERVICE_FILE" ]; then
@@ -228,11 +224,10 @@ fi
 
 
 #关闭原有进程
-sudo systemctl stop zk_work_aleo
-sudo pkill -9 zk_work_aleo
 sudo systemctl daemon-reload
 sudo systemctl enable aleo.service
-sudo systemctl start aleo.service   
+sudo systemctl start aleo.service
+sudo systemctl restart aleo.service
 sleep 5
 
 # 确保日志文件由当前用户创建，并设置权限为当前用户的读写权限
