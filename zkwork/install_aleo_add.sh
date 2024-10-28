@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # 定义你的输入参数
-URL="https://ghproxy.net/https://github.com/6block/zkwork_aleo_gpu_worker/releases/download/v0.2.3/aleo_prover-v0.2.3_full.tar.gz"
+URL="https://ghproxy.net/https://github.com/6block/zkwork_aleo_gpu_worker/releases/download/cuda-v0.2.4/aleo_prover-v0.2.4_cuda_full.tar.gz"
 WHO=$(whoami)
 TARGET_DIR="/home/$WHO/zk_work"
-LOCAL_ARCHIVE="aleo_prover-v0.2.3_full.tar.gz"
+LOCAL_ARCHIVE="aleo_prover-v0.2.4_cuda_full.tar.gz"
 REQUIRED_TOOLS=("curl" "wget")
 TEMP_DIR=$(mktemp -d)
 START_FILE="start_zk_work"
@@ -90,7 +90,7 @@ mv $TARGET_DIR/aleo_prover $TARGET_DIR/zk_work_aleo
 touch $TARGET_DIR/$START_FILE
 # 提示用户输入 custom_name
 read -p "Enter custom_name : " CUSTOM_NAME
-echo 'nohup ./zk_work_aleo --pool aleo.hk.zk.work:10003 --address aleo12r69w7qat0e6n7kqg7jt9e6zlsaywczhdjn6u3zfegejg0hzv5ys2mdhyu --custom_name CUSTOM_NAME >> zk_work.log 2>&1 &' > $TARGET_DIR/$START_FILE 
+echo 'nohup ./zk_work_aleo --pool aleo.asia1.zk.work:10003 --pool aleo.hk.zk.work:10003 --pool aleo.jp.zk.work:10003 --address ADDRESS --custom_name CUSTOM_NAME >> zk_work.log 2>&1 &' > $TARGET_DIR/$START_FILE 
 
 
 TEMPLATE_FILE="$TARGET_DIR/$START_FILE"
@@ -103,19 +103,15 @@ MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/CUSTOM_NAME/$CUSTOM_NAME/g"
 # 创建新的脚本文件并写入修改后的内容
 echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$START_FILE
 
-# 提示用户输入 ALEO_ADDRESS
-read -p "Enter aleo_address : " ALEO_ADDRESS
-
 TEMPLATE_FILE="$TARGET_DIR/$START_FILE"
 # 读取模板文件内容
 TEMPLATE_CONTENT=$(<"$TEMPLATE_FILE")
 
-# 替换模板中的 ALEO_ADDRESS 变量
-MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/ALEO_ADDRESS/$ALEO_ADDRESS/g")
+# 替换模板中的 ADDRESS 变量
+MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/ADDRESS/$ADDRESS/g")
 
 # 创建新的脚本文件并写入修改后的内容
 echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$START_FILE
-
 
 
 chmod +x "$TARGET_DIR/$START_FILE"
@@ -169,7 +165,6 @@ fi
 
 #创建aleo.service文件
 touch $TARGET_DIR/$SERVICE_FILE
-
 echo '[Unit]  
 Description=Monitor and Restart aleo if not running  
   
@@ -189,13 +184,11 @@ TEMPLATE_FILE="$TARGET_DIR/$SERVICE_FILE"
 # 读取模板文件内容
 TEMPLATE_CONTENT=$(<"$TEMPLATE_FILE")
 
-# 替换模板中的 CPU_NUM 变量
+# 替换模板中的 WHO 变量
 MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/WHO/$WHO/g")
 
 # 创建新的脚本文件并写入修改后的内容
 echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$SERVICE_FILE
-
-sudo mv $TARGET_DIR/$SERVICE_FILE /etc/systemd/system/
 
 # 检查脚本文件是否创建成功
 if [ -f "$TARGET_DIR/$SERVICE_FILE" ]; then
@@ -204,6 +197,8 @@ else
     echo "Failed to create script file $SERVICE_FILE."
     exit 1
 fi
+
+sudo mv $TARGET_DIR/$SERVICE_FILE /etc/systemd/system/
 
 #取消开机启动
 touch $TARGET_DIR/disable_aleo
@@ -239,11 +234,10 @@ fi
 
 
 #关闭原有进程
-sudo systemctl stop zk_work_aleo
-sudo pkill -9 zk_work_aleo
 sudo systemctl daemon-reload
 sudo systemctl enable aleo.service
-sudo systemctl start aleo.service   
+sudo systemctl start aleo.service
+sudo systemctl restart aleo.service
 sleep 5
 
 # 确保日志文件由当前用户创建，并设置权限为当前用户的读写权限
