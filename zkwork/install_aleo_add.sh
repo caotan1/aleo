@@ -104,7 +104,7 @@ MODIFIED_CONTENT=$(echo "$TEMPLATE_CONTENT" | sed "s/CUSTOM_NAME/$CUSTOM_NAME/g"
 echo -e "$MODIFIED_CONTENT" > $TARGET_DIR/$START_FILE
 
 # 提示用户输入 aleo_address
-read -p "Enter custom_name : " ADDRESS
+read -p "Enter aleo_address : " ADDRESS
 
 TEMPLATE_FILE="$TARGET_DIR/$START_FILE"
 # 读取模板文件内容
