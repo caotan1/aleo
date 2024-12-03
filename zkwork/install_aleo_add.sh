@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # 定义你的输入参数
-URL="https://ghproxy.net/https://github.com/6block/zkwork_aleo_gpu_worker/releases/download/cuda-v0.2.4/aleo_prover-v0.2.4_cuda_full.tar.gz"
+URL="https://ghproxy.net/https://github.com/6block/zkwork_aleo_gpu_worker/releases/download/cuda-v0.2.5-hotfix2/aleo_prover-v0.2.5_cuda_full_hotfix2.tar.gz"
 WHO=$(whoami)
 TARGET_DIR="/home/$WHO/zk_work"
-LOCAL_ARCHIVE="aleo_prover-v0.2.4_cuda_full.tar.gz"
+LOCAL_ARCHIVE="aleo_prover-v0.2.5_cuda_full_hotfix2.tar.gz"
 REQUIRED_TOOLS=("curl" "wget")
 TEMP_DIR=$(mktemp -d)
 START_FILE="start_zk_work"
